@@ -14,10 +14,6 @@ mongoose.connection.once('open', () => {
   console.log('Connected with MongoDB ORM');
 });
 
-
-
-
-
 var serverBoard = [
         [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -29,6 +25,7 @@ var dropdownValue = 0;
 
 app.use(express.static(__dirname +'./../')); //serves the index.html
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
@@ -57,6 +54,9 @@ app.get('/getBoards', boardController.getBoards, function(req,res,next){
     res.status(200);
     res.send(res.boards);
 });
+
+//create a new user
+app.post('/user', userController.createUser); 
 
 //connects user to socket
 io.on('connection', function(socket){
