@@ -42,11 +42,13 @@ button{
 
 .buttonWrapper{
   margin-left: %;
-  
 }
 .buttonWrapper:focus {
   outline: none;
+}
 
+.buttonWrapper button{
+  outline: none;
 }
 
 input[type=submit] {
@@ -89,4 +91,11 @@ select {
     cursor:pointer;
     -webkit-border-radius: 5px;
     border-radius: 5px; 
+  }
+
+  .activeCol {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/White_dot.svg/2000px-White_dot.svg.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
   }

@@ -21,6 +21,16 @@ class Player extends Component {
     worker.postMessage({type: 'start', bpm: this.state.bpm})
     worker.onmessage = (e) => {
       console.log('tick')
+      let column = $('.col' + counter);
+      let prevCol = $('.col' + (counter - 1));
+      if (counter === 0) {
+        prevCol = $('.col15')
+      }
+      
+      prevCol.removeClass('activeCol');
+      column.addClass('activeCol');
+
+
       if (e.data === 'tick') {
         if (board[0][counter] == 1) {
           this.playSound(bufferList[0], 0);
