@@ -1,5 +1,5 @@
 
-var sessionController = require('./../sessionController');
+var sessionController = require('./sessionController');
 
 var cookieController = {};
 cookieController.setSSIDCookie = setSSIDCookie;
