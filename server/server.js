@@ -39,7 +39,11 @@ app.get('/getBoards', boardController.getBoards, function(req,res,next){
 //create a new user
 app.post('/user', userController.createUser, cookieController.setSSIDCookie);
 // validate user password has against stored hash 
-app.post('/login')
+
+app.get('/login', function(req, res, next){
+  res.send('./../login.html')
+} )
+app.post('/login' )
 //delete session info
 app.get('/logout');
 

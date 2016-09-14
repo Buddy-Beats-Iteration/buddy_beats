@@ -23,6 +23,12 @@ h1{
   text-align: center;
 }
 
+.intrologo{
+   font-family: 'Modak', cursive;
+  font-size: 5em;
+  font-weight: 400;
+}
+
 .board{
   width: 100%;
   min-width: 550px;

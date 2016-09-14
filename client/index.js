@@ -241,7 +241,7 @@ class App extends Component {
   render() {
 		return (
       <div className="mdl-grid">
-        <h1 className="mdl-cell mdl-cell--4-col">Buddy Beats</h1>
+        <h1 className="mdl-cell mdl-cell--4-col intrologo">Buddy Beats</h1>
         <div className="mdl-cell mdl-cell--6-col">
           <form className="saveform" onSubmit = {this.handleSubmit}>    
             <input type="text" className="mdl-textfield__input" ref="textinput" required={true} onChange={this.handleBoardNameChange} placeholder="Name your board!" />
