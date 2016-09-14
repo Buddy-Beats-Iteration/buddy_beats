@@ -31,7 +31,8 @@ class App extends Component {
     this.catchServerBoard = this.catchServerBoard.bind(this);
     this.catchServerBoardChange = this.catchServerBoardChange.bind(this);
     this.catchTimestamp = this.catchTimestamp.bind(this);
-
+    this.toggleStart = this.toggleStart.bind(this);
+    this.toggleStop = this.toggleStop.bind(this);
   }
 
   //alters color of each button on click
@@ -247,7 +248,7 @@ class App extends Component {
           <Selector dropdownValue={this.state.dropdownValue} boards={this.state.otherBoards} changeBoard={this.changeBoard} />
         </div>
         <Board boxState={this.state.board} toggle={this.toggle} className="mdl-cell mdl-cell--12-col" />
-        <Player board={this.state.board} toggleStart={this.toggleStart.bind(this)} toggleStop={this.toggleStop.bind(this)} />
+        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} />
         <button onClick={this.catchTimestamp}>click me</button>
 			</div>
 		)
