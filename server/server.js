@@ -4,6 +4,7 @@ var path = require('path');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+const fs = require('fs');
 const mongoose = require('mongoose');
 const Board = require('./models/boardModel');
 const userController = require('./controllers/userController');
@@ -41,8 +42,14 @@ app.post('/user', userController.createUser, cookieController.setSSIDCookie);
 // validate user password has against stored hash 
 
 app.get('/login', function(req, res, next){
-  res.send('./../login.html')
-} )
+  fs.readFile("login.html", function(err, data){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
+});
+  
+
 app.post('/login' )
 //delete session info
 app.get('/logout');
