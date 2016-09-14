@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 
 class Box extends Component {
 
@@ -11,10 +10,8 @@ class Box extends Component {
       backgroundColor: colorsArr[this.props.boxState[this.props.row][this.props.col] ]
     }
 
-
 		return (
 			<button style = {boxStyle} className = {`btn col${this.props.col}`} onClick={this.props.toggle.bind(null,this.props.row, this.props.col)}>
-				
 			</button>
 		)
   }
