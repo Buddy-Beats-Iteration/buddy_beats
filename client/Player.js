@@ -14,7 +14,7 @@ class Player extends Component {
         </button>
 
         <input id="bpm-slider" className="mdl-slider mdl-js-slider" type="range"
-          min="100" max="500" defaultValue="160"></input>
+          min="100" max="500" defaultValue="160" onMouseUp={this.props.changeBpm} onTouchEnd={this.props.changeBpm}></input>
 			</div>
 		)
 	}

@@ -184,7 +184,7 @@ class App extends Component {
       looping: true,
       bpm: bpm
     }, () => {
-      this.playLoop(bufferList, this.state.bpm, this.state.board)
+      this.playLoop(bufferList)
     })
   }
 
@@ -197,7 +197,7 @@ class App extends Component {
 
 //Plays loop.  input is a buffer list of sounds and a speed variable.
 //BPM is beats per minute
-  playLoop(bufferList, bpm, board, loop = 0) {
+  playLoop(bufferList) {
     let counter = 0;
     worker.postMessage({type: 'start', bpm: this.state.bpm})
     worker.onmessage = (e) => {
@@ -213,7 +213,7 @@ class App extends Component {
 
 
       if (e.data === 'tick') {
-        board = this.state.board;
+        let board = this.state.board;
         if (board[0][counter] == 1) {
           this.playSound(bufferList[0], 0);
         }
@@ -232,10 +232,11 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate() {
-    if (this.state.looping) document.getElementById('bpm-slider').setAttribute('disabled', 'disabled');
-    else document.getElementById('bpm-slider').removeAttribute('disabled');
-  }  
+  changeBpm() {
+    const bpm = document.getElementById('bpm-slider').value;
+    this.setState({ bpm: bpm })
+    worker.postMessage({type: 'changeBpm', bpm: bpm})
+  }
 
   render() {
 		return (
@@ -249,7 +250,7 @@ class App extends Component {
           <Selector dropdownValue={this.state.dropdownValue} boards={this.state.otherBoards} changeBoard={this.changeBoard} />
         </div>
         <Board boxState={this.state.board} toggle={this.toggle} className="mdl-cell mdl-cell--12-col" />
-        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} />
+        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm.bind(this)} />
         <button onClick={this.catchTimestamp}>click me</button>
 			</div>
 		)
