@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
 var app = express();
+var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const mongoose = require('mongoose');
 const Board = require('./models/boardModel');
