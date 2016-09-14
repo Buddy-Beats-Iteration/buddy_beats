@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 const mongoose = require('mongoose');
 const Board = require('./models/boardModel');
 const userController = require('./controllers/userController');
-const socketsController = require('./controllers/userController');
+const socketsController = require('./controllers/socketsController');
 const cookieController = require('./util/cookieController');
 const boardController = require('./controllers/boardController');
 const mongoURI = 'mongodb://localhost/buddydb';
@@ -31,7 +31,7 @@ app.post('/saveBoard', boardController.saveBoard , function(req,res,next){
 });
 
 app.get('/getBoards', boardController.getBoards, function(req,res,next){
-    console.log(res.boards)
+    console.log(res.boards);
     res.status(200);
     res.send(res.boards);
 });
@@ -71,6 +71,6 @@ io.on('connection', function(socket){
 
 
 //THIS HAS TO BE DOWN HERE OMG THAT WAS MY PROBLEM ALL ALONG
-app.listen(3000,function(){
+http.listen(3000,function(){
   console.log("Started on PORT 3000");
 });

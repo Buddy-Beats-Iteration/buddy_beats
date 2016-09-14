@@ -10,10 +10,10 @@ socketsController.serverBoardName = '';
 socketsController.dropdownValue = 0;
 
 socketsController.toggleServer = function(arr){
-	if (serverBoard[arr[0]][arr[1]] === 0) {
-      serverBoard[arr[0]][arr[1]] = 1;
+	if (socketsController.serverBoard[arr[0]][arr[1]] === 0) {
+      socketsController.serverBoard[arr[0]][arr[1]] = 1;
   } else {
-    serverBoard[arr[0]][arr[1]] = 0;
+    socketsController.serverBoard[arr[0]][arr[1]] = 0;
   }
 }
 
