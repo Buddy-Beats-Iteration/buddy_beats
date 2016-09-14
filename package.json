@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "./node_modules/.bin/webpack -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "export NODE_ENV=test && mocha --timeout 20000 tests/"
   },
   "repository": {
     "type": "git",
