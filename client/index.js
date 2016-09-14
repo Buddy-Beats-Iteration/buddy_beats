@@ -213,6 +213,7 @@ class App extends Component {
 
 
       if (e.data === 'tick') {
+        board = this.state.board;
         if (board[0][counter] == 1) {
           this.playSound(bufferList[0], 0);
         }
