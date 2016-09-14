@@ -175,6 +175,7 @@ class App extends Component {
       looping: false
     })
     worker.postMessage('stop');
+    $('.btn').removeClass('activeCol');
   }
 
   toggleStart() {
