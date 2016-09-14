@@ -54,3 +54,8 @@ input[type=submit] {
     height: 27px;
     float: left;
 }
+.intrologo {
+  font-family: 'Modak', cursive;
+  font-size: 4em;
+  font-weight: 400;
+}
