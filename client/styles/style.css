@@ -24,8 +24,10 @@ h1{
 }
 
 .board{
-  width: 1232px;
+  width: 100%;
+  min-width: 550px;
   margin: 0 auto;
+  text-align: center;
 }
 
 button{
