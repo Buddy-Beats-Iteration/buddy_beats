@@ -1,14 +1,14 @@
 const User = require('./../models/userModel');
 
 //Create an object called userController to put methods on
-//se we can export it below(really just doing this to use methods in userModel)
 const userController = {};
-//Open connection to mongoose database
-
+//import bcrypt for authentication
+const bcrypt = require('bcryptjs');
 
 
 userController.createUser = (request, response, next) => {
-  console.log('hit create user route here is body:', request.body)
+  console.log('hit create user route here is body:') 
+  console.log(request.body);
   console.log('headers ', request.headers)
   //create new user using our USER model that we exported
 
