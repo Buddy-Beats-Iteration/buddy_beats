@@ -23,14 +23,13 @@ sessionController.isLoggedIn = function(req, res, next) {
 * @param cookieId - id to use as the id of the new session
 * @param callback - Callback with signature (Session)
 */
-sessionController.startSession = function(cookieId, callback) {
+sessionController.startSession = function(cookieId) {
   //write code here
   // console.log('saving github token in mongo', cookieId);
   var session = new Session();
   session.cookieId = cookieId;
-  session.save(function(err){
-      if (err) throw err;
-    })
+  // window.sessionStorage.session = session; << to re-test when user form is created>>
 };
+
 
 module.exports = sessionController;

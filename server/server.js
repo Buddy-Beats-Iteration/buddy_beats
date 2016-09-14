@@ -7,6 +7,7 @@ var io = require('socket.io')(http);
 const mongoose = require('mongoose');
 const Board = require('./models/boardModel');
 const userController = require('./controllers/userController');
+const cookieController = require('./util/cookieController');
 const boardController = require('./controllers/boardController');
 const mongoURI = 'mongodb://localhost/buddydb';
 mongoose.connect(mongoURI);
