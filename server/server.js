@@ -42,15 +42,12 @@ function toggleServer(arr){
 }
 
 app.post('/saveBoard', boardController.saveBoard , function(req,res,next){
-    
     res.status(200);
     res.send();
 });
 
 app.get('/getBoards', boardController.getBoards, function(req,res,next){
-    console.log('yo');
     console.log(res.boards)
-
     res.status(200);
     res.send(res.boards);
 });
@@ -75,7 +72,6 @@ io.on('connection', function(socket){
   	toggleServer(arr);
     socket.broadcast.emit('togglereturn', arr);
   });
-  console.log('a user connnected');
 
   socket.on('boardChange', function(boardArray) {
     serverBoard = boardArray[1];
