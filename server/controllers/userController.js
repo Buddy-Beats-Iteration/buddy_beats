@@ -20,20 +20,7 @@ userController.createUser = (request, response, next) => {
   next()
 };
 
-userController.returnBoards = (request, response, next) => {
-  console.log('hit returnBoards route ')
-  // console.log('headers ', request.headers)
-  //create new user using our USER model that we exported
-  // <<<<<<< WHY WAS THIS USER BEING ADDED HERE??? -- KATE >>>>
-  // //then save it to the database
-  // const user = new User(request.body);
-  // user.save(function(err) {
-  //   if (err) throw err;
-  //   console.log('User created!');
-  // });
-  
-  next()
-};
+
 
 
 //
