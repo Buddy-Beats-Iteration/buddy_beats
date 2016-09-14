@@ -35,7 +35,6 @@ class Player extends Component {
           this.playSound(bufferList[3], 0);
         }
         counter++
-        console.log(counter)
         counter = (counter === 16) ? 0 : counter;
       }
     }
@@ -59,11 +58,18 @@ class Player extends Component {
 
   toggleStart() {
     if (this.state.looping) return;
+    const bpm = document.getElementById('bpm-slider').value;
     this.setState({
-      looping: true
+      looping: true,
+      bpm: bpm
     }, () => {
       this.playLoop(bufferList, this.state.bpm, this.props.board)
     })
+  }
+
+  componentDidUpdate() {
+    if (this.state.looping) document.getElementById('bpm-slider').setAttribute('disabled', 'disabled');
+    else document.getElementById('bpm-slider').removeAttribute('disabled');
   }
 
 	render() {
@@ -74,10 +80,12 @@ class Player extends Component {
           <img src="../assets/Stop.svg" width="75" height="75"  />
         </button>
 
-
         <button onClick={this.toggleStart}>
             <img src="../assets/Play.svg" width="75" height="75"  />
         </button>
+
+        <input id="bpm-slider" className="mdl-slider mdl-js-slider" type="range"
+          min="100" max="500" defaultValue="160"></input>
 
 			</div>
 		)
