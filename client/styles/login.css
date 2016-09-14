@@ -1,0 +1,56 @@
+
+.login_container{
+  width: 70%;
+  min-height: 260px;
+  overflow:auto;
+  margin: 50px auto;
+}
+
+.login_box{
+  background-color: #83BBBC;
+  border-radius: 18px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.login_box input {
+  margin: 20px auto;
+  display: block;
+  width: 40%;
+}
+.buttons {
+  width: 40%;
+  margin: 0 auto;
+  /*padding: 6px 10px;*/
+}
+button{
+    width:40%;
+    margin:4px 6px;
+    max-height:50px;
+    /*padding:6px 10px; */
+    font-size: 20px;
+    /*background:#ccc; */
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    height: 27px;
+    float: left;
+}
+
+input[type=submit] {
+    width:40%;
+    margin:4px auto;
+    margin-top:4px;
+    max-height:50px;
+    padding:6px 10px; 
+    font-size: 20px;
+    /*background:#ccc; */
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    height: 27px;
+    float: left;
+}

@@ -1,20 +1,28 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Buddy Beats</title>
+  <title>React App</title>
   <link rel="stylesheet" type="text/css" href="./client/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="./client/styles/login.css">
   <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
   <script src="/node_modules/material-design-lite/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="app"></div>
-	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <!--<script>var socket = io();</script>-->
-  <script src='/client/sound/intervalWorker.js'></script>
-  <script src='client/sound/bufferLoader.js'></script>
-  <script src='client/sound/initializeSounds.js'></script>	
+  <div class="login_container">
+    <div class="login_box">
+      <form method="POST" action='/login'>
+        <input name="username" type="text" placeholder="username"></input>
+        <input name="password" type="text" placeholder="password"></input>
+        <div class="buttons">
+          <input type='submit' value="login">
+          <button>Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+	
   <script src="bundle.js"></script>
 </body>
 
