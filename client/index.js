@@ -71,23 +71,28 @@ class App extends Component {
 
   }
 
-
+  //remote client changes board, this updates client 1
   catchServerBoardChange(serverBoardArr) {
     console.log("caught serverboardchange", serverBoardArr)
     this.setState({board: serverBoardArr[0], boardname: serverBoardArr[1], dropdownValue: serverBoardArr[2]})//might be boardname
   }
 
   componentDidMount(){
-    //this makes a request to board on server
+    //this makes a request to board on server, gets board from client 2, sets state on client 1
     socket.on('serverboardchanged', this.catchServerBoardChange);
+    // send client 1 initial board to client 2
     socket.emit('initialclientload');
+    //remote person clicks box? update client 1? 
     socket.on('sendserverboard', this.catchServerBoard);
+    // remote person clicked box, update box value
     socket.on('togglereturn', this.catchToggle);
     socket.on('initUpdateDropdown', () => {
+      //update the dropdown on the Socket side and passing new board configurations to the socket client
       $.get('/getBoards', (result) => {
         var validBoards = result
                         .map((boardObj) => {
                           boardObj.board = boardObj.board.map((arr) => {
+                            //values in board come back as strings, convert to nums
                             return arr.map(Number)
                           })
                           return {
@@ -98,8 +103,7 @@ class App extends Component {
                         })
         this.setState({otherBoards: validBoards});
       });
-    })
-
+    });
     $.get('/getBoards', (result) => {
       var validBoards = result
                         .map((boardObj) => {
@@ -114,11 +118,14 @@ class App extends Component {
                         })
       this.setState({otherBoards: validBoards});
     });
+
   }
 
   handleBoardNameChange(e) {
     this.setState({boardname: e.target.value})
   }
+
+  // remote person clicks a box? working this out.
   catchServerBoard(serverBoard){
     this.setState({board: serverBoard});
   }
