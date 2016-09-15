@@ -33,6 +33,8 @@ class App extends Component {
     this.catchTimestamp = this.catchTimestamp.bind(this);
     this.toggleStart = this.toggleStart.bind(this);
     this.toggleStop = this.toggleStop.bind(this);
+    this.changeBpm = this.changeBpm.bind(this);
+    this.remoteChangeBpm = this.remoteChangeBpm.bind(this);
   }
 
   //alters color of each button on click
@@ -86,8 +88,10 @@ class App extends Component {
     socket.emit('initialclientload');
     //remote person clicks box? update client 1? 
     socket.on('sendserverboard', this.catchServerBoard);
-    // remote person clicked box, update box value
+    //remote person clicked box, update box value
     socket.on('togglereturn', this.catchToggle);
+    //update bpm change from other client
+    socket.on('remoteChangeBpm', this.remoteChangeBpm);
     socket.on('initUpdateDropdown', () => {
       //update the dropdown on the Socket side and passing new board configurations to the socket client
       $.get('/getBoards', (result) => {
@@ -236,7 +240,14 @@ class App extends Component {
   changeBpm() {
     const bpm = document.getElementById('bpm-slider').value;
     this.setState({ bpm: bpm })
+    socket.emit('changeBpm', bpm);
     worker.postMessage({type: 'changeBpm', bpm: bpm})
+  }
+
+  remoteChangeBpm(bpm) {
+    this.setState({ bpm: bpm });
+    worker.postMessage({type: 'changeBpm', bpm: bpm});
+    document.getElementById('bpm-slider').value = bpm;
   }
 
   render() {
@@ -251,7 +262,7 @@ class App extends Component {
           <Selector dropdownValue={this.state.dropdownValue} boards={this.state.otherBoards} changeBoard={this.changeBoard} />
         </div>
         <Board boxState={this.state.board} toggle={this.toggle} className="mdl-cell mdl-cell--12-col" />
-        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm.bind(this)} />
+        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm} />
         <button onClick={this.catchTimestamp}>click me</button>
 			</div>
 		)

@@ -62,11 +62,15 @@ io.on('connection', function(socket){
     socketsController.serverBoardName = boardArray[0];
     socketsController.dropdownValue = boardArray[2];
     socket.broadcast.emit('serverboardchanged', [socketsController.serverBoard, socketsController.serverBoardName, socketsController.dropdownValue])
-  })
+  });
 
   socket.on('updateDropdown', function() {
     socket.broadcast.emit('initUpdateDropdown')
-  })
+  });
+
+  socket.on('changeBpm', function(bpm) {
+    socket.broadcast.emit('remoteChangeBpm', bpm);
+  });
 });
 
 
