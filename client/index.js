@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Board from './Board';
 import Player from './Player';
 import Selector from './Selector';
+import AddSound from './AddSound';
 
 
 var socket = io();
@@ -264,6 +265,7 @@ class App extends Component {
         <Board boxState={this.state.board} toggle={this.toggle} className="mdl-cell mdl-cell--12-col" />
         <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm} />
         <button onClick={this.catchTimestamp}>click me</button>
+        <AddSound />
 			</div>
 		)
   }
