@@ -239,14 +239,14 @@ class App extends Component {
 
   changeBpm() {
     const bpm = document.getElementById('bpm-slider').value;
+    if (this.state.looping) worker.postMessage({type: 'changeBpm', bpm: bpm})
     this.setState({ bpm: bpm })
     socket.emit('changeBpm', bpm);
-    worker.postMessage({type: 'changeBpm', bpm: bpm})
   }
 
   remoteChangeBpm(bpm) {
+    if (this.state.looping) worker.postMessage({type: 'changeBpm', bpm: bpm});
     this.setState({ bpm: bpm });
-    worker.postMessage({type: 'changeBpm', bpm: bpm});
     document.getElementById('bpm-slider').value = bpm;
   }
 
