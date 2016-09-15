@@ -4,6 +4,7 @@ var path = require('path');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+const fs = require('fs');
 const mongoose = require('mongoose');
 const Board = require('./models/boardModel');
 const userController = require('./controllers/userController');
@@ -22,7 +23,7 @@ app.use(bodyParser.json());
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
-  res.send('hello world');
+  res.send('./index.html');
 });
 
 app.post('/saveBoard', boardController.saveBoard , function(req,res,next){
@@ -39,7 +40,22 @@ app.get('/getBoards', boardController.getBoards, function(req,res,next){
 //create a new user
 app.post('/user', userController.createUser, cookieController.setSSIDCookie);
 // validate user password has against stored hash 
-app.post('/login')
+
+app.get('/login', function(req, res, next){
+  fs.readFile("login.html", function(err, data){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
+});
+  
+app.post('/login', userController.login, function(req, res, next){
+    fs.readFile("index.html", function(err, data){
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end();
+    });
+  });
 //delete session info
 app.get('/logout');
 
