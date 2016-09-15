@@ -5,6 +5,9 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const fs = require('fs');
+var formidable = require('formidable');
+var util = require('util');
+
 const mongoose = require('mongoose');
 const Board = require('./models/boardModel');
 const userController = require('./controllers/userController');
@@ -58,6 +61,24 @@ app.post('/login', userController.login, function(req, res, next){
   });
 //delete session info
 app.get('/logout');
+
+app.post('/sound', function (req, res) {
+    var form = new formidable.IncomingForm();
+
+    form.parse(req);
+
+    form.on('fileBegin', function (name, file){
+        file.path = './samples/' + file.name;
+    });
+
+    form.on('file', function (name, file){
+        console.log('Uploaded ' + file.name);
+    });
+
+    res.end();
+    
+    return;
+});
 
 //connects user to socket
 io.on('connection', function(socket){
