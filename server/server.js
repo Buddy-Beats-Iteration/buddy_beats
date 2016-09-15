@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
-  res.send('hello world');
+  res.send('./index.html');
 });
 
 app.post('/saveBoard', boardController.saveBoard , function(req,res,next){
@@ -49,8 +49,13 @@ app.get('/login', function(req, res, next){
   });
 });
   
-
-app.post('/login' )
+app.post('/login', userController.login, function(req, res, next){
+    fs.readFile("index.html", function(err, data){
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end();
+    });
+  });
 //delete session info
 app.get('/logout');
 
