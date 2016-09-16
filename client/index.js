@@ -31,11 +31,11 @@ class App extends Component {
     this.catchToggle = this.catchToggle.bind(this);
     this.catchServerBoard = this.catchServerBoard.bind(this);
     this.catchServerBoardChange = this.catchServerBoardChange.bind(this);
-    this.catchTimestamp = this.catchTimestamp.bind(this);
     this.toggleStart = this.toggleStart.bind(this);
     this.toggleStop = this.toggleStop.bind(this);
     this.changeBpm = this.changeBpm.bind(this);
     this.remoteChangeBpm = this.remoteChangeBpm.bind(this);
+    this.addSound = this.addSound.bind(this);
   }
 
   //alters color of each button on click
@@ -50,7 +50,8 @@ class App extends Component {
 
   //save state of board
   handleSubmit(e){
-    e.preventDefault();
+    console.log('in handleSubmit')
+    if (e) e.preventDefault();
     var that = this;
     $.post('/saveBoard',{name: that.state.boardname, board: that.state.board}, function(){
       console.log('successful save');
@@ -125,7 +126,6 @@ class App extends Component {
                         })
       this.setState({otherBoards: validBoards});
     });
-
   }
 
   handleBoardNameChange(e) {
@@ -135,6 +135,19 @@ class App extends Component {
   // remote person clicks a box? working this out.
   catchServerBoard(serverBoard){
     this.setState({board: serverBoard});
+  }
+
+  addSound(name) {  
+    let boardCopy = this.state.board.slice();
+    boardCopy.push(this.newSoundRow())
+    this.setState({board: boardCopy})
+    this.handleSubmit()
+    init(name);
+    console.log('in addSound', this.state.board) 
+  }
+
+  newSoundRow() {
+    return new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
   }
 
 
@@ -159,20 +172,6 @@ class App extends Component {
       name: boardToSet.name,
       dropdownValue: e.target.value
     })
-
-    // var newBoard = this.state.otherBoards[1];
-
-    // this.setState({
-    //   name: newBoard.name,
-    //   board: newBoard.board
-    // })
-  }
-  catchTimestamp(e) {
-    for (let val of Object.keys(e)) {
-      console.log(val);
-    }
-    console.log(e.timeStamp)
-
   }
 
   toggleStop() {
@@ -220,17 +219,10 @@ class App extends Component {
 
       if (e.data === 'tick') {
         let board = this.state.board;
-        if (board[0][counter] == 1) {
-          this.playSound(bufferList[0], 0);
-        }
-        if (board[1][counter] == 1) {
-          this.playSound(bufferList[1], 0);
-        }
-        if (board[2][counter] == 1) {
-          this.playSound(bufferList[2], 0);
-        }
-        if (board[3][counter] == 1) {
-          this.playSound(bufferList[3], 0);
+        for(let i = 0; i < board.length; i++) {
+          if (board[i][counter] == 1) {
+            this.playSound(bufferList[i], 0);
+          }          
         }
         counter++
         counter = (counter === 16) ? 0 : counter;
@@ -264,8 +256,7 @@ class App extends Component {
         </div>
         <Board boxState={this.state.board} toggle={this.toggle} className="mdl-cell mdl-cell--12-col" />
         <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm} />
-        <button onClick={this.catchTimestamp}>click me</button>
-        <AddSound />
+        <AddSound addSound={this.addSound} handleSubmit={this.handleSubmit} />
 			</div>
 		)
   }
