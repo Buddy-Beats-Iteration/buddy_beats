@@ -73,10 +73,10 @@ app.post('/sound', function (req, res) {
 
     form.on('file', function (name, file){
         console.log('Uploaded ' + file.name);
+        res.send(file.name);
+        res.end();
     });
-
-    res.end();
-    
+    // res.end();
     return;
 });
 
