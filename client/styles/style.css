@@ -19,14 +19,17 @@
 }
 
 h1{
-  color:lightseagreen;
-  text-align: center;
+  color: black;
+  text-align: left;
 }
 
 .intrologo{
-   font-family: 'Modak', cursive;
+   font-family: helvetica;
   font-size: 5em;
-  font-weight: 400;
+  font-weight: bold;
+  margin-bottom: 0;
+
+
 }
 
 .board{
@@ -41,13 +44,13 @@ button{
   border: none;
    /*margin: 0 auto;*/
 }
-
+/*
 #submitButton{
-  height: 30px;
-}
+  height: 40px;
+}*/
 
 .buttonWrapper{
-  margin-left: %;
+  margin: 1.5em 2.5em 1em;
 }
 .buttonWrapper:focus {
   outline: none;
@@ -58,27 +61,28 @@ button{
 }
 
 input[type=submit] {
-    width:250px;
-    margin-left:400px;
-    margin-top:4px;
-    max-height:50px;
-    padding:5px 10px; 
-    font-size: 20px;
-    /*background:#ccc; */
-    border:0 none;
-    cursor:pointer;
+sd    /* margin-left: 400px; */
+    background-color: none;
+    margin-top: 4px;
+    max-height: 50px;
+    padding: 0px 10px;
+    font-size: 1em;
+    /* background: #ccc; */
+    cursor: pointer;
+    background: none;
     -webkit-border-radius: 5px;
-    border-radius: 5px; 
-    height: 27px;
+    border-radius: 5px;
+    border: black solid 2px;
+    height: 2em;
 }
 
 input[type=text] {
     width:250px;
-    margin-left:400px;
+/*    margin-left:400px;*/
     height: 37px;
     font-size: 16px;
     padding:5px 10px; 
-    background:#ccc; 
+    background:none; 
     border:0 none;
     cursor:pointer;
     -webkit-border-radius: 5px;
@@ -89,10 +93,10 @@ select {
     width:250px;
     height: 40px;
     font-size: 20px;
-    margin-left:400px;
+    /*margin-left:400px;*/
     margin-bottom: 5px;
     padding:5px 10px; 
-    background:#ccc; 
+    background:none; 
     border:0 none;
     cursor:pointer;
     -webkit-border-radius: 5px;

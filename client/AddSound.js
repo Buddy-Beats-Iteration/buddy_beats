@@ -14,10 +14,10 @@ class AddSound extends Component {
 
   render() {
   	return (
-			<form id="newSoundForm" method="post" encType="multipart/form-data" action="/sound">
-		    <input type="file" name="file" />
-		    <input type="submit" value="Submit" />
-			</form>
+	<form id="newSoundForm" method="post" encType="multipart/form-data" action="/sound">
+		<input type="file" name="file" />
+		<input id="addSoundButton" type="submit" value="AddSound" />
+	</form>
   	)
   }
 }
