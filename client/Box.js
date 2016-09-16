@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Box extends Component {
 
   render() {
-    var colorsArr = ["#83BBBC", "EEB937"];
+    var colorsArr = ["rgba(255,87,34,.25)", "black"];
     var boxStyle = {
       paddingBottom: "calc(100%/17)",
       width: "calc(100%/17)",

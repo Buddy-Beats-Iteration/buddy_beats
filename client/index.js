@@ -243,17 +243,19 @@ class App extends Component {
   render() {
 		return (
       <div className="mdl-grid">
-        <h1 className="mdl-cell mdl-cell--4-col intrologo">Buddy Beats</h1>
-        <div className="mdl-cell mdl-cell--6-col">
+        <h1 className="intrologo">BB</h1>
+        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm} />
+        <div className="mdl-cell mdl-cell--4-col">
+          <Selector dropdownValue={this.state.dropdownValue} boards={this.state.otherBoards} changeBoard={this.changeBoard} />
           <form className="saveform" onSubmit = {this.handleSubmit}>    
             <input type="text" className="mdl-textfield__input" ref="textinput" required={true} onChange={this.handleBoardNameChange} placeholder="Name your board!" />
             <input id = "submitButton" type="submit" placeholder="Save Board" required = {true} />
           </form>  
-          <Selector dropdownValue={this.state.dropdownValue} boards={this.state.otherBoards} changeBoard={this.changeBoard} />
-        </div>
+        </div> 
         <Board boxState={this.state.board} toggle={this.toggle} className="mdl-cell mdl-cell--12-col" />
-        <Player board={this.state.board} toggleStart={this.toggleStart} toggleStop={this.toggleStop} changeBpm={this.changeBpm} />
-        <AddSound addSound={this.addSound} handleSubmit={this.handleSubmit} />
+        <div className="mdl-cell mdl-cell--4-col">
+          <AddSound addSound={this.addSound} handleSubmit={this.handleSubmit} />
+        </div>       
 			</div>
 		)
   }
