@@ -49,9 +49,7 @@ class App extends Component {
   }
 
   //save state of board
-  handleSubmit(e){
-    console.log('in handleSubmit')
-    if (e) e.preventDefault();
+  handleSubmit(){
     var that = this;
     $.post('/saveBoard',{name: that.state.boardname, board: that.state.board}, function(){
       console.log('successful save');
@@ -138,12 +136,11 @@ class App extends Component {
   }
 
   addSound(name) {  
-    let boardCopy = this.state.board.slice();
+    const boardCopy = this.state.board.slice();
     boardCopy.push(this.newSoundRow())
     this.setState({board: boardCopy})
-    this.handleSubmit()
-    init(name);
-    console.log('in addSound', this.state.board) 
+    // this.handleSubmit();
+    loadNewSound(name);
   }
 
   newSoundRow() {

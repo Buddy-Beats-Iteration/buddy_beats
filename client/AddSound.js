@@ -9,15 +9,8 @@ class AddSound extends Component {
 				console.log('this', this)
 				console.log('that', that)
         that.props.addSound(name)
-        // that.props.handleSubmit()
     });
 	}
-
-	// postSound(e) {
-	// 	e.preventDefault();
-	// 	console.log(e.target)
-	// 	// $.post('/sound', this.props.addSound)
-	// }
 
   render() {
   	return (

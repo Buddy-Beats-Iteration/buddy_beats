@@ -4,7 +4,7 @@ var context;
 var bufferLoader;
 var bufferList;
 var worker = new Worker('client/sound/intervalWorker.js')
-function init(name) {
+function init() {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   let soundArray = [
       //These are the drum samples
@@ -12,12 +12,12 @@ function init(name) {
       './samples/donk.wav',
       './samples/snare2.wav',
       './samples/hihat2.wav',
-    ]
+    ];
 
-  if (typeof name === 'string') { soundArray.push('./samples/' + name)}
-  console.log('in init', soundArray)
+  // if (typeof name === 'string') { soundArray.push('./samples/' + name)}
+  // console.log('in init', soundArray)
   
-  context = null;
+  // context = null;
   context = new AudioContext();
   bufferLoader = new BufferLoader(
     context,
@@ -30,6 +30,12 @@ function init(name) {
 
 function finishedLoading(buffers) {
 	bufferList = buffers;
-
 }
 
+function loadNewSound(name) {
+  const url = './samples/' + name;
+  const index = bufferList.length;
+  bufferLoader.loadBuffer(url, index, function(buffer) {
+    bufferList.push(buffer);
+  });
+}

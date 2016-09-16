@@ -31,6 +31,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
+    "formidable": "^1.0.17",
     "jquery": "^3.1.0",
     "material-design-lite": "^1.2.1",
     "mongodb": "^2.2.9",
