@@ -6,8 +6,9 @@ function BufferLoader(context, urlList, callback) {
   this.loadCount = 0;
 }
 
-BufferLoader.prototype.loadBuffer = function(url, index) {
+BufferLoader.prototype.loadBuffer = function(url, index, callback) {
   // Load buffer asynchronously
+  console.log('bufferLoaderUrls', url)
   var request = new XMLHttpRequest();
   request.open("GET", url, true);
   request.responseType = "arraybuffer";
@@ -15,6 +16,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
   var loader = this;
 
   request.onload = function() {
+    console.log('bufferLoader onload')
     loader.context.decodeAudioData(
       request.response,
       function(buffer) {
@@ -26,6 +28,8 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
         if (++loader.loadCount == loader.urlList.length)
           //this calls the callback passed in to the buffer loader when all the files have been loaded
           loader.onload(loader.bufferList);
+
+        if (callback) callback(buffer);
       },
       function(error) {
         console.error('decodeAudioData error', error);

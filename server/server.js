@@ -73,10 +73,10 @@ app.post('/sound', function (req, res) {
 
     form.on('file', function (name, file){
         console.log('Uploaded ' + file.name);
+        res.send(file.name);
+        res.end();
     });
-
-    res.end();
-    
+    // res.end();
     return;
 });
 
@@ -112,6 +112,6 @@ io.on('connection', function(socket){
 
 
 //THIS HAS TO BE DOWN HERE OMG THAT WAS MY PROBLEM ALL ALONG
-http.listen(8000,function(){
+http.listen(3000,function(){
   console.log("Started on PORT 3000");
 });

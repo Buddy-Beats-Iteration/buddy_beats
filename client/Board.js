@@ -8,7 +8,7 @@ class Board extends Component {
     //numcols (# of columns) * 150px width = boardWidth
     //150px column width is set on Box.js
     let boxes = [];
-    let numrows = 4;
+    let numrows = this.props.boxState.length;
     let numcols = 16;
     // let boardWidth = (numcols * 150 + 20).toString(); 
     
